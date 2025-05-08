@@ -1,0 +1,60 @@
+CREATE DATABASE atmDB;
+USE atmDB;
+
+-- Table 1: signup
+CREATE TABLE signup (
+    form_no VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100),
+    father_name VARCHAR(100),
+    dob VARCHAR(50),
+    gender VARCHAR(10),
+    email VARCHAR(100),
+    marital_status VARCHAR(20),
+    address VARCHAR(200),
+    province VARCHAR(100),
+    city VARCHAR(100),
+    postal_code VARCHAR(10)
+);
+
+-- Table 2: signuptwo
+CREATE TABLE signuptwo (
+    form_no VARCHAR(20),
+    religion VARCHAR(50),
+    category VARCHAR(50),
+    income VARCHAR(50),
+    occupation VARCHAR(50),
+    phone VARCHAR(15),
+    nic VARCHAR(20),
+    seniorcitizen VARCHAR(10),
+    existingaccount VARCHAR(10),
+    PRIMARY KEY (form_no),
+    FOREIGN KEY (form_no) REFERENCES signup(form_no)
+);
+
+-- Table 3: signupthree
+CREATE TABLE signupthree (
+    form_no VARCHAR(20),
+    account_type VARCHAR(50),
+    card_number VARCHAR(25),
+    pin_number VARCHAR(10),
+    facilities VARCHAR(500),
+    PRIMARY KEY (form_no),
+    FOREIGN KEY (form_no) REFERENCES signup(form_no)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+-- Table 4: login
+CREATE TABLE login (
+    form_no VARCHAR(20) PRIMARY KEY,
+    card_number VARCHAR(20) NOT NULL,
+    pin VARCHAR(10) NOT NULL
+);
+
+-- Table 5: bank
+CREATE TABLE bank (
+    pin VARCHAR(10),
+    date VARCHAR(50),
+    type VARCHAR(20),
+    amount VARCHAR(20)
+);
